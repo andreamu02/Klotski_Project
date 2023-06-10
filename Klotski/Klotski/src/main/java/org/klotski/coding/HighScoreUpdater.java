@@ -47,7 +47,7 @@ public class HighScoreUpdater {
             while (inFile.hasNext()) {
                 String user = inFile.next();
                 int score = Integer.parseInt(inFile.next());
-                scoresMap.put(user, score);
+                scoresMap.put(user.toUpperCase(), score);
             }
             inFile.close();
             file.close();
@@ -63,7 +63,7 @@ public class HighScoreUpdater {
      * @param score The user's score
      */
     public void addUserScore(String user, int score) {
-        scoresMap.put(user, score);
+        scoresMap.put(user.toUpperCase(), score);
         writeScore();
     }
 
@@ -92,8 +92,8 @@ public class HighScoreUpdater {
      * @see HighScoreUpdater#writeScore()
      */
     public void updateScore(String user, int score) {
-        if (isInside(user)) {
-            scoresMap.replace(user, score);
+        if (isInside(user.toUpperCase())) {
+            scoresMap.replace(user.toUpperCase(), score);
         } else {
             throw new IllegalArgumentException();
         }
@@ -108,8 +108,8 @@ public class HighScoreUpdater {
      * @throws IllegalArgumentException If there is no user
      */
     public int getScore(String user) {
-        if (isInside(user)) {
-            return scoresMap.get(user);
+        if (isInside(user.toUpperCase())) {
+            return scoresMap.get(user.toUpperCase());
         } else {
             throw new IllegalArgumentException();
         }

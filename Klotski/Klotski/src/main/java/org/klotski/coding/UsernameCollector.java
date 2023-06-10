@@ -121,9 +121,9 @@ public class UsernameCollector {
                 FileWriter file = new FileWriter("src/main/resources/users_record/users.txt");
                 for (int i = 0; i < users.size(); i++) {
                     if (users.size() - 1 == i) {
-                        file.write(users.get(i));
+                        file.write(users.get(i).toUpperCase());
                     } else {
-                        file.write(users.get(i) + "\n");
+                        file.write(users.get(i).toUpperCase() + "\n");
                     }
 
                 }

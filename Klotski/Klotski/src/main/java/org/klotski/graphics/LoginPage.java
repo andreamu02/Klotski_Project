@@ -124,7 +124,7 @@ public class LoginPage extends JFrame implements ActionListener, WindowListener,
         quit.setFocusable(false);
         quit.addActionListener(this);
 
-        JTextArea textArea = new JTextArea("Select one username from the list below\nor insert a new username in the field.");
+        JTextArea textArea = new JTextArea("Select one username from the list below\nor insert a new username in the field.\nWhitespaces will be deleted.");
         textArea.setBounds(30, 15, 250, 60);
         textArea.setEnabled(false);
         textArea.setDisabledTextColor(Color.BLACK);
@@ -266,7 +266,14 @@ public class LoginPage extends JFrame implements ActionListener, WindowListener,
         if (list.getSelectedValue() != null) {
             text = list.getSelectedValue();
         } else {
-            text = fieldName.getText().toUpperCase();
+            text = fieldName.getText().toUpperCase().replaceAll(" ", "");
+        }
+        if(text.length()>20){
+            int choice = JOptionPane.showOptionDialog(null, "The username is too long!\nIt must not exceed 20 characters.", "Error Name", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, 0);
+            if (choice == JOptionPane.YES_OPTION) {
+                changed = false;
+                return;
+            }
         }
         for (String user : users) {
             if (text.equalsIgnoreCase(user)) {
